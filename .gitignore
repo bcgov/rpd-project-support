@@ -1,3 +1,11 @@
+# User Added
+# Catch all input or output folders one level down
+*/input/*
+*/output/*
+
+# if need further down can use **/input/*
+
+# Template Below
 # History files
 .Rhistory
 .Rapp.history
