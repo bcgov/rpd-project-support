@@ -228,10 +228,66 @@ FactContractData <- read.csv(here(
   "RPD-Project-Forecasting/output/2026-03-02-FactContractData.csv"
 ))
 
-# Invoice ####
-# 219 pages
-# FactInvoiceData <- extract_cbre_data("pjm_fact_invoice_vw")
+# Dim Invoice ####
+# test <- extract_cbre_data("fact_invoice_vw") # 219 pages
+# test <- extract_cbre_data("fin_dim_invoice_line_vw") # empty data
+# test <- extract_cbre_data("fin_dim_invoice_vw") # 54 pages
 
+# DimInvoiceData <- extract_cbre_data("pjm_dim_invoice_vw") # 52 pages
+# write.csv(
+#   DimInvoiceData,
+#   here(paste0(
+#     "RPD-Project-Forecasting/output/",
+#     Sys.Date(),
+#     "-DimInvoiceData.csv"
+#   )),
+#   row.names = FALSE
+# )
+
+DimInvoiceData <- read.csv(here(
+  "RPD-Project-Forecasting/output/2026-03-02-DimInvoiceData.csv"
+))
+
+# Fact Invoice ####
+# FactInvoiceData <- extract_cbre_data("pjm_fact_invoice_vw") # 219 pages
+# write.csv(
+#   FactInvoiceData,
+#   here(paste0(
+#     "RPD-Project-Forecasting/output/",
+#     Sys.Date(),
+#     "-FactInvoiceData.csv"
+#   )),
+#   row.names = FALSE
+# )
+
+FactInvoiceData <- read.csv(here(
+  "RPD-Project-Forecasting/output/2026-03-02-FactInvoiceData.csv"
+))
+
+FactInvoice <- FactInvoiceData |>
+  select_if(~ !all(is.na(.))) |>
+  select_if(~ !all(. == 0)) |>
+  select_if(~ !all(. == '-1')) |>
+  select_if(~ !all(. == "N/A")) |>
+  select_if(~ !all(. == "-")) #|>
+select(
+  edp_update_ts,
+  source_created_ts,
+  source_modified_ts,
+  current_payment_due,
+  project_skey,
+  invoice_skey,
+  invoice_item_skey,
+  record_type,
+  invoice_item_id,
+  contract_skey,
+  contract_line_skey,
+  change_order_skey,
+  change_order_item_skey,
+)
+
+
+select()
 # Project Activity ####
 # 111 pages
 # FactProjActivityData <- extract_cbre_data("pjm_fact_project_activity_vw")

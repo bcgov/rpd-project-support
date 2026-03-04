@@ -2,6 +2,7 @@
 # Catch all input or output folders one level down
 */input/*
 */output/*
+*/charts/*
 
 # if need further down can use **/input/*
 
