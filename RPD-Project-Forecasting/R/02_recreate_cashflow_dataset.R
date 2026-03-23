@@ -269,22 +269,22 @@ FactInvoice <- FactInvoiceData |>
   select_if(~ !all(. == 0)) |>
   select_if(~ !all(. == '-1')) |>
   select_if(~ !all(. == "N/A")) |>
-  select_if(~ !all(. == "-")) #|>
-select(
-  edp_update_ts,
-  source_created_ts,
-  source_modified_ts,
-  current_payment_due,
-  project_skey,
-  invoice_skey,
-  invoice_item_skey,
-  record_type,
-  invoice_item_id,
-  contract_skey,
-  contract_line_skey,
-  change_order_skey,
-  change_order_item_skey,
-)
+  select_if(~ !all(. == "-")) |>
+  select(
+    edp_update_ts,
+    source_created_ts,
+    source_modified_ts,
+    current_payment_due,
+    project_skey,
+    invoice_skey,
+    invoice_item_skey,
+    record_type,
+    invoice_item_id,
+    contract_skey,
+    contract_line_skey,
+    change_order_skey,
+    change_order_item_skey,
+  )
 
 
 select()
